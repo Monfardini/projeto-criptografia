@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criptografia Clássica</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Criptografia Clássica</h1>
+  <div class="container">
+    <label for="algoritmo">Algoritmo:</label>
+    <select id="algoritmo">
+      <option value="cesar">Cifra de César</option>
+      <option value="vigenere">Cifra de Vigenère</option>
+      <option value="hill">Cifra de Hill</option>
+      <option value="otp">OTP (One-Time Pad)</option>
+    </select>
+
+    <label for="mensagem">Mensagem:</label>
+    <textarea id="mensagem" placeholder="Digite sua mensagem..."></textarea>
+
+    <label for="chave">Chave (quando aplicável):</label>
+    <input type="text" id="chave" placeholder="Digite a chave...">
+
+    <div class="buttons">
+      <button id="criptografar">Criptografar</button>
+      <button id="decriptografar">Decriptografar</button>
+    </div>
+
+    <label for="resultado">Resultado:</label>
+    <textarea id="resultado" readonly></textarea>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

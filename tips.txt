@@ -1,0 +1,7 @@
+Hill: chave deve ser quatro números inteiros (exemplo: 3 3 2 5).
+
+OTP: a chave precisa ter o mesmo tamanho da mensagem (por exemplo, "abc" com "xyz").
+
+Vigenère: a chave é uma palavra (ex: "chave").
+
+César: a chave é um número (ex: 3).
