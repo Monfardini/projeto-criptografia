@@ -1,35 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Criptografia Clássica</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Criptografia </title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Criptografia Clássica</h1>
+  <h1>Criptografia — César, Vigenère, Hill, OTP e AES</h1>
+
   <div class="container">
     <label for="algoritmo">Algoritmo:</label>
     <select id="algoritmo">
       <option value="cesar">Cifra de César</option>
       <option value="vigenere">Cifra de Vigenère</option>
-      <option value="hill">Cifra de Hill</option>
+      <option value="hill">Cifra de Hill (2x2)</option>
       <option value="otp">OTP (One-Time Pad)</option>
+      <option value="aes">AES-128 (ECB, PKCS#7)</option>
     </select>
 
     <label for="mensagem">Mensagem:</label>
     <textarea id="mensagem" placeholder="Digite sua mensagem..."></textarea>
 
     <label for="chave">Chave (quando aplicável):</label>
-    <input type="text" id="chave" placeholder="Digite a chave...">
+    <input type="text" id="chave" placeholder="Ex: César -> número; Vigenère -> palavra; Hill -> 'a b c d'; OTP -> mesma length; AES -> 16 caracteres ou será derivada/pad." />
+
+    <div class="hint" id="hint"></div>
 
     <div class="buttons">
       <button id="criptografar">Criptografar</button>
       <button id="decriptografar">Decriptografar</button>
+      <button id="copiar">Copiar Resultado</button>
     </div>
 
     <label for="resultado">Resultado:</label>
-    <textarea id="resultado" readonly></textarea>
+    <textarea id="resultado" readonly placeholder="Resultado aparecerá aqui..."></textarea>
+
+    <div id="mensagem-visual" class="message"></div>
+
+    <section class="dicas">
+      <h3>Dicas de uso</h3>
+      <ul>
+        <li><strong>César:</strong> chave é um número (ex: 3). Works with letters only; mantém maiúsculas/minúsculas.</li>
+        <li><strong>Vigenère:</strong> chave é uma palavra (apenas letras).</li>
+        <li><strong>Hill:</strong> chave: quatro inteiros separados por espaço, exemplo: <code>3 3 2 5</code>. Texto usa apenas letras minúsculas; se ímpar, adiciona 'x'.</li>
+        <li><strong>OTP:</strong> chave deve ter exatamente o mesmo tamanho que a mensagem. Para demonstração usamos XOR por caractere.</li>
+        <li><strong>AES-128:</strong> modo ECB com padding PKCS#7. A chave AVISADA: 16 caracteres (128 bits). Se a chave for menor, o sistema a pad/recorta para 16 bytes. <em>Aviso:</em> ECB não é seguro para dados repetidos — para aplicações reais use AES-CBC/GCM com IV/nonce e autenticação.</li>
+      </ul>
+    </section>
   </div>
 
   <script src="script.js"></script>
