@@ -1,55 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Criptografia </title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Cifras Clássicas — OTP / César / Vigenère / Hill</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <h1>Criptografia — César, Vigenère, Hill, OTP e AES</h1>
+  <header class="top">
+    <h1>🔐 Cifras Clássicas</h1>
+    <button id="goto-aes" class="nav-btn">Ir para AES →</button>
+  </header>
 
-  <div class="container">
-    <label for="algoritmo">Algoritmo:</label>
-    <select id="algoritmo">
-      <option value="cesar">Cifra de César</option>
-      <option value="vigenere">Cifra de Vigenère</option>
-      <option value="hill">Cifra de Hill (2x2)</option>
-      <option value="otp">OTP (One-Time Pad)</option>
-      <option value="aes">AES-128 (ECB, PKCS#7)</option>
-    </select>
-
-    <label for="mensagem">Mensagem:</label>
-    <textarea id="mensagem" placeholder="Digite sua mensagem..."></textarea>
-
-    <label for="chave">Chave (quando aplicável):</label>
-    <input type="text" id="chave" placeholder="Ex: César -> número; Vigenère -> palavra; Hill -> 'a b c d'; OTP -> mesma length; AES -> 16 caracteres ou será derivada/pad." />
-
-    <div class="hint" id="hint"></div>
-
-    <div class="buttons">
-      <button id="criptografar">Criptografar</button>
-      <button id="decriptografar">Decriptografar</button>
-      <button id="copiar">Copiar Resultado</button>
-    </div>
-
-    <label for="resultado">Resultado:</label>
-    <textarea id="resultado" readonly placeholder="Resultado aparecerá aqui..."></textarea>
-
-    <div id="mensagem-visual" class="message"></div>
-
-    <section class="dicas">
-      <h3>Dicas de uso</h3>
-      <ul>
-        <li><strong>César:</strong> chave é um número (ex: 3). Works with letters only; mantém maiúsculas/minúsculas.</li>
-        <li><strong>Vigenère:</strong> chave é uma palavra (apenas letras).</li>
-        <li><strong>Hill:</strong> chave: quatro inteiros separados por espaço, exemplo: <code>3 3 2 5</code>. Texto usa apenas letras minúsculas; se ímpar, adiciona 'x'.</li>
-        <li><strong>OTP:</strong> chave deve ter exatamente o mesmo tamanho que a mensagem. Para demonstração usamos XOR por caractere.</li>
-        <li><strong>AES-128:</strong> modo ECB com padding PKCS#7. A chave AVISADA: 16 caracteres (128 bits). Se a chave for menor, o sistema a pad/recorta para 16 bytes. <em>Aviso:</em> ECB não é seguro para dados repetidos — para aplicações reais use AES-CBC/GCM com IV/nonce e autenticação.</li>
-      </ul>
+  <main class="grid">
+    <section class="card">
+      <h2>OTP (One-Time Pad)</h2>
+      <p class="tip">Chave deve ter o mesmo tamanho da mensagem. Saída em Base64.</p>
+      <textarea id="otp-input" placeholder="Mensagem / Base64 (para decodificação)"></textarea>
+      <input id="otp-key" placeholder="Chave (mesmo tamanho da mensagem)" />
+      <div class="actions">
+        <button id="otp-enc">Criptografar</button>
+        <button id="otp-dec">Decriptografar</button>
+        <button data-copy-target="otp-output" class="copy-btn">Copiar</button>
+      </div>
+      <pre id="otp-output" class="output"></pre>
     </section>
-  </div>
 
-  <script src="script.js"></script>
+    <section class="card">
+      <h2>Cifra de César</h2>
+      <p class="tip">Chave numérica (ex: 3). Mantém espaços e símbolos.</p>
+      <textarea id="caesar-input" placeholder="Mensagem"></textarea>
+      <input id="caesar-shift" type="number" placeholder="Deslocamento (número)" />
+      <div class="actions">
+        <button id="caesar-enc">Criptografar</button>
+        <button id="caesar-dec">Decriptografar</button>
+        <button data-copy-target="caesar-output" class="copy-btn">Copiar</button>
+      </div>
+      <pre id="caesar-output" class="output"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Cifra de Vigenère</h2>
+      <p class="tip">Chave: apenas letras (ex: SEGURANCA)</p>
+      <textarea id="vigenere-input" placeholder="Mensagem"></textarea>
+      <input id="vigenere-key" placeholder="Chave (apenas letras)" />
+      <div class="actions">
+        <button id="vigenere-enc">Criptografar</button>
+        <button id="vigenere-dec">Decriptografar</button>
+        <button data-copy-target="vigenere-output" class="copy-btn">Copiar</button>
+      </div>
+      <pre id="vigenere-output" class="output"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Cifra de Hill (2x2)</h2>
+      <p class="tip">Matriz 2x2: use formato JSON: <code>[[3,3],[2,5]]</code></p>
+      <textarea id="hill-input" placeholder="Mensagem (somente letras serão usadas)"></textarea>
+      <input id="hill-matrix" placeholder='Matriz (ex: [[3,3],[2,5]])' />
+      <div class="actions">
+        <button id="hill-enc">Criptografar</button>
+        <button id="hill-dec">Decriptografar</button>
+        <button data-copy-target="hill-output" class="copy-btn">Copiar</button>
+      </div>
+      <pre id="hill-output" class="output"></pre>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script src="js/otp.js"></script>
+  <script src="js/caesar.js"></script>
+  <script src="js/vigenere.js"></script>
+  <script src="js/hill.js"></script>
 </body>
 </html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cifra AES - Criptografia</title>
+  <link rel="stylesheet" href="css/aes.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Criptografia AES (128 bits)</h1>
+    <p class="desc">Insira o texto e uma chave (16 caracteres). Clique em "Criptografar" ou "Descriptografar".</p>
+
+    <label for="aes-key">🔑 Chave:</label>
+    <input type="text" id="aes-key" placeholder="Digite a chave (ex: 1234567890123456)">
+
+    <label for="aes-input">💬 Texto:</label>
+    <textarea id="aes-input" placeholder="Digite o texto aqui..."></textarea>
+
+    <div class="btn-group">
+      <button onclick="encryptAES()">Criptografar</button>
+      <button onclick="decryptAES()">Descriptografar</button>
+    </div>
+
+    <h3>Resultado:</h3>
+    <textarea id="aes-output" readonly></textarea>
+
+    <a href="index.html" class="link-btn"> Voltar para Cifras Comuns</a>
+  </div>
+
+  <script src="js/aes.js"></script>
+</body>
+</html>

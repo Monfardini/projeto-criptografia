@@ -5,3 +5,17 @@ OTP: a chave precisa ter o mesmo tamanho da mensagem (por exemplo, "abc" com "xy
 Vigenère: a chave é uma palavra (ex: "chave").
 
 César: a chave é um número (ex: 3).
+
+Chave: até 16 caracteres (ex.: seguranca123456)
+
+Texto: se maior que 16 bytes, será truncado (ou adapte para CBC posteriormente)
+
+Modo: AES-128 (ECB simplificado, educacional)
+
+Exemplo:
+
+Texto: mensagem teste
+
+Chave: 1234567890123456
+
+Resultado: Base64 com saída visível.
